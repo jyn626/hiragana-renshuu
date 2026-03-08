@@ -46,9 +46,9 @@ function App() {
 
           <div className="w-full flex flex-col items-center justify-center">
             <div
-              className={`relative  border  ${flipped ? "border-amber-500  border-2" : "border-slate-400 "}  text-black  hover:shadow-inner transition-all duration-100 w-[300px] h-fit flex items-center justify-center rounded-sm p-2 `}
+              className={`relative  border  ${flipped ? "border-amber-500  border-2" : "border-slate-400 "}  text-black  hover:shadow-inner transition-all duration-100 w-[300px] h-[300px] flex items-center justify-center rounded-sm p-2 `}
             >
-              <p className="text-6xl text-center hover:scale-110 transition-all duration-150">
+              <p className="text-9xl text-center hover:scale-110 transition-all duration-150">
                 {flipped ? (
                   hiragana[flashcardIndex].answer
                 ) : (
@@ -66,18 +66,18 @@ function App() {
               </button>
             </div>
             {/* buttons */}
-            <div className="flex gap-4 mt-2">
+            <div className="flex gap-4 mt-8">
               <button
                 onClick={prevFlashcard}
-                className="cursor-pointer bg-green-600 text-center text-slate-100 px-2 text-sm rounded-sm"
+                className="cursor-pointer bg-[#A3D55D]/80 hover:bg-[#A3D55D] text-center  text-white px-2 text-sm w-[200px] h-[77px]"
               >
-                prev
+                previous card
               </button>
               <button
                 onClick={nextFlashcard}
-                className="cursor-pointer bg-blue-400 text-center text-slate-100 px-2 text-sm rounded-sm"
+                className="cursor-pointer bg-[#457B9D]/80 hover:bg-[#457B9D] text-center text-white px-2 text-sm  w-[200px]"
               >
-                next
+                next card
               </button>
             </div>
           </div>
