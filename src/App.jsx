@@ -56,8 +56,8 @@ function App() {
   }
 
   function next() {
+    if (currentFlashcardIndex + 1 == hiragana.length) return;
     let nextIndex = currentFlashcardIndex + 1;
-    if (nextIndex >= hiragana.length) return;
     setCurrentFlashcardIndex(nextIndex);
   }
 
@@ -106,7 +106,8 @@ function App() {
               </button>
             </div>
             <small className="mt-2 font-bold">
-              {currentFlashcardIndex}/{shuffledFlashCards.length}
+              {currentFlashcardIndex + 1}/
+              {shuffledFlashCards && shuffledFlashCards.length}
             </small>
             {/* buttons */}
             <div className="flex gap-4 mt-8">
