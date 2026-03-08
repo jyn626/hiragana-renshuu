@@ -39,18 +39,22 @@ function App() {
   return (
     <>
       <main className=" h-[100vh] flex justify-center p-6">
-        <div className="border border-slate-200  py-2 w-[880px] flex flex-col items-center ">
-          <div className="mb-16 w-full px-4 py-2 border-b border-gray-200">
-            <h4 className="font-semibold">
-              ひらがな<small className="font-light">(hiragana)</small>{" "}
-              Flashcards
-            </h4>
-            <p className="font-medium text-gray-600">
-              ひらがなのれんしゅうへようこそ!{" "}
-              <small className="font-light">
-                (Welcome to hiragana practice!)
-              </small>
-            </p>
+        <div className="border border-slate-200  py-2 w-[880px] flex flex-col items-start ">
+          <div className="mb-12 w-full px-4 py-2 border-b border-gray-200 flex items-center gap-8">
+            <img width="90" src="/public/nihongo.png" alt="" />
+
+            <div>
+              <h4 className="font-semibold">
+                ひらがな<small className="font-light">(hiragana)</small>{" "}
+                Flashcards
+              </h4>
+              <p className="font-medium text-gray-600">
+                ひらがなのれんしゅうへようこそ!{" "}
+                <small className="font-light">
+                  (Welcome to hiragana practice!)
+                </small>
+              </p>
+            </div>
           </div>
 
           <div className="w-full flex flex-col items-center justify-center">
