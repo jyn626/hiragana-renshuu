@@ -24,6 +24,7 @@ function App() {
     if (nextIndex >= flashcards.length) return;
 
     setflashcardIndex(nextIndex);
+    setFlipped(false);
   };
 
   const prevFlashcard = () => {
@@ -32,6 +33,7 @@ function App() {
     if (prevIndex < 0) return;
 
     setflashcardIndex(prevIndex);
+    setFlipped(false);
   };
 
   return (
