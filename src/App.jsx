@@ -116,21 +116,31 @@ function App() {
             </small>
             {/* buttons */}
             <div className="flex gap-4 mt-8">
-              <button
-                onClick={unknown}
-                className="cursor-pointer  bg-[#457B9D]/80 hover:bg-[#457B9D] text-center  text-white px-2 text-sm w-[200px] h-[77px]"
-              >
-                I don't know{" "}
-                <span className="font-bold text-xs">({unknowns?.length}) </span>
-              </button>
-
-              <button
-                onClick={known}
-                className=" cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px]"
-              >
-                I know
-                <span className="font-bold text-xs"> ({knowns?.length}) </span>
-              </button>
+              <div className="flex flex-col text-center">
+                <button
+                  onClick={unknown}
+                  className="cursor-pointer  bg-[#457B9D]/80 hover:bg-[#457B9D] text-center  text-white px-2 text-sm w-[200px] h-[77px]"
+                >
+                  I don't know{" "}
+                  <span className="font-bold text-xs">
+                    ({unknowns?.length}){" "}
+                  </span>
+                </button>
+                <small>わかりません</small>
+              </div>
+              <div className="flex flex-col text-center">
+                <button
+                  onClick={known}
+                  className=" cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px] h-[77px]"
+                >
+                  I know
+                  <span className="font-bold text-xs">
+                    {" "}
+                    ({knowns?.length}){" "}
+                  </span>
+                </button>
+                <small>わかります</small>
+              </div>
             </div>
           </div>
         </div>
