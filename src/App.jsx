@@ -34,8 +34,10 @@ function App() {
           </div>
 
           <div className="w-full flex flex-col items-center justify-center">
-            <div className="relative  border border-slate-400 text-black  hover:shadow-inner transition-all duration-100 w-[300px] h-fit flex items-center justify-center rounded-sm p-2">
-              <p className="text-6xl text-center">
+            <div
+              className={`relative  border  ${flipped ? "border-amber-500  border-2" : "border-slate-400 "}  text-black  hover:shadow-inner transition-all duration-100 w-[300px] h-fit flex items-center justify-center rounded-sm p-2 `}
+            >
+              <p className="text-6xl text-center hover:scale-110 transition-all duration-150">
                 {flipped ? (
                   flashcards[0].answer
                 ) : (
