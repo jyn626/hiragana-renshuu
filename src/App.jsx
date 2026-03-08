@@ -12,7 +12,6 @@ function App() {
       TODO: the currenet character will be stored in a 'know' storage
       so that the user can track the characters they already memorized/know
     */
-    setFlipped(false);
   };
 
   useEffect(() => {
@@ -59,6 +58,7 @@ function App() {
     if (currentFlashcardIndex + 1 == hiragana.length) return;
     let nextIndex = currentFlashcardIndex + 1;
     setCurrentFlashcardIndex(nextIndex);
+    setFlipped(false);
   }
 
   return (
