@@ -1,24 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { hiragana } from "./data/hiragana";
 function App() {
   const [flipped, setFlipped] = useState(false);
   const [flashcardIndex, setflashcardIndex] = useState(0);
+  const [shuffledFlashCards, setShuffledFlashCards] = useState();
 
-  const nextFlashcard = () => {
-    // let nextIndex = flashcardIndex + 1;
-    // if (nextIndex >= hiragana.length) return;
-
-    const randomIndex = generateRandomIndex();
-
+  const iKnow = () => {
+    let nextIndex = flashcardIndex + 1;
+    if (nextIndex >= hiragana.length) return;
+    // const randomIndex = generateRandomIndex();
     /* 
       TODO: the currenet character will be stored in a 'know' storage
       so that the user can track the characters they already memorized/know
     */
-
-    setflashcardIndex(randomIndex);
+    setflashcardIndex(nextIndex);
     setFlipped(false);
   };
+
+  useEffect(() => {
+    // console.log("ww");
+    shuffleFlashCards();
+  }, []);
 
   const iDontKnow = () => {
     /* 
@@ -29,8 +32,29 @@ function App() {
       */
   };
 
-  function generateRandomIndex() {
-    return Math.floor(Math.random() * hiragana.length);
+  // function generateRandomIndex() {
+  //   return Math.floor(Math.random() * hiragana.length);
+  // }
+
+  function shuffleFlashCards() {
+    const shuffled = shuffle(hiragana);
+    setShuffledFlashCards(shuffled);
+  }
+
+  function shuffle(array) {
+    let currentIndex = array.length;
+
+    while (currentIndex != 0) {
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
   }
 
   return (
@@ -60,10 +84,12 @@ function App() {
             >
               <p className="text-9xl text-center hover:scale-110 transition-all duration-150">
                 {flipped ? (
-                  hiragana[flashcardIndex].answer
+                  shuffledFlashCards &&
+                  shuffledFlashCards[flashcardIndex].answer
                 ) : (
                   <span className="font-bolder">
-                    {hiragana[flashcardIndex].hiragana}
+                    {shuffledFlashCards &&
+                      shuffledFlashCards[flashcardIndex].hiragana}
                   </span>
                 )}
               </p>
@@ -84,7 +110,7 @@ function App() {
                 I don't know
               </button>
               <button
-                onClick={nextFlashcard}
+                onClick={iKnow}
                 className=" cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px]"
               >
                 I know
