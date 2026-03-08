@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+* {
+  font-family: Tahoma, "Hiragino Kaku Gothic Pro", Meiryo, sans-serif;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important; */
+}
