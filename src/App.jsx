@@ -82,8 +82,9 @@ function App() {
   return (
     <>
       <main className="flex justify-center p-6">
-        <div className="border border-slate-200  py-2 w-[880px] flex flex-col items-start ">
-          <div className="mb-12 w-full px-4 py-2 border-b border-gray-200 flex items-center gap-8">
+        <div className="  py-2 w-[880px] flex flex-col items-start ">
+          {/* header */}
+          <div className="mb-6 w-full px-4 py-2 border-b border-gray-200 flex items-center gap-8">
             <img width="90" src="/public/nihongo.png" alt="" />
 
             <div>
@@ -99,6 +100,20 @@ function App() {
               </p>
             </div>
           </div>
+          {/* end header */}
+
+          {/* exercises links */}
+
+          <div className="mb-6 flex gap-2 items-center">
+            <button className="bg-[#4CAF50] text-white px-4 py-1 rounded-xs">
+              Flashcards
+            </button>
+            <button className="bg-[#4CAF50] text-white px-4 py-1 rounded-xs">
+              Reading Practice
+            </button>
+          </div>
+
+          {/* end exercises links */}
 
           <div className="w-full flex flex-col items-center justify-center">
             <div
@@ -155,8 +170,8 @@ function App() {
             </div>
           </div>
 
-          <div className="p-2 w-full flex justify-center">
-            <table className="w-100">
+          <div className="border border-slate-200 rounded-sm p-2 w-full flex justify-center max-h-[500px] overflow-y-scroll">
+            <table className="w-100 ">
               <tbody className="border border-gray-200">
                 <tr className="p-2 bg-green-100 ">
                   <th className="font-extralight px-4 py-2 text-sm">
