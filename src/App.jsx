@@ -143,6 +143,25 @@ function App() {
               </div>
             </div>
           </div>
+
+          <div className="p-2">
+            <table>
+              <tbody className="border border-gray-200">
+                <tr className="p-2 bg-red-100 ">
+                  <th className="font-light px-4 py-2 text-sm">Hiragana</th>
+                  <th className="font-light px-4 py-2 text-sm">Answer</th>
+                </tr>
+                {unknowns.map(({ hiragana, answer }) => {
+                  return (
+                    <tr>
+                      <td className="text-center">{hiragana}</td>
+                      <td className="text-center">{answer}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </main>
     </>
