@@ -9,13 +9,14 @@ function App() {
   const [unknowns, setUnknowns] = useState([]);
   const [pastCharacters, setPastCharacters] = useState([]);
 
-  const storePastCharacter = (char, known) => {
+  // TODO: remove the knowns/unknowns state (not needed)
+  const storePastCharacter = (char, isKnown) => {
     setPastCharacters((prev) => {
       const updated = [
         ...prev,
         {
           ...char,
-          known,
+          isKnown,
         },
       ];
 
@@ -169,35 +170,31 @@ function App() {
             </div>
           </div>
 
-          <div className="p-2 flex flex-row justify-around w-full">
-            <table>
-              <tbody className="border border-gray-200">
-                <tr className="p-2 bg-red-100 ">
-                  <th className="font-light px-4 py-2 text-sm">Hiragana</th>
-                  <th className="font-light px-4 py-2 text-sm">Answer</th>
-                </tr>
-                {unknowns.map(({ hiragana, answer }) => {
-                  return (
-                    <tr>
-                      <td className="text-center">{hiragana}</td>
-                      <td className="text-center">{answer}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-
-            <table>
+          <div className="p-2 w-full flex justify-center">
+            <table className="w-100">
               <tbody className="border border-gray-200">
                 <tr className="p-2 bg-green-100 ">
-                  <th className="font-light px-4 py-2 text-sm">Hiragana</th>
-                  <th className="font-light px-4 py-2 text-sm">Answer</th>
+                  <th className="font-extralight px-4 py-2 text-sm">
+                    Hiragana
+                  </th>
+                  <th className="font-extralight px-4 py-2 text-sm">Answer</th>
+                  {/* TODO: find a better label than this lol */}
+                  <th className="font-extralight px-4 py-2 text-sm">
+                    Is correct?
+                  </th>
                 </tr>
-                {knowns.map(({ hiragana, answer }) => {
+                {pastCharacters.map(({ hiragana, answer, isKnown }) => {
                   return (
                     <tr>
-                      <td className="text-center">{hiragana}</td>
-                      <td className="text-center">{answer}</td>
+                      <td className="border border-gray-300 text-center font-bold">
+                        {hiragana}
+                      </td>
+                      <td className="border border-gray-300 text-center">
+                        {answer}
+                      </td>
+                      <td className="border border-gray-300 text-center">
+                        {isKnown ? "✔️" : "❌"}
+                      </td>
                     </tr>
                   );
                 })}
