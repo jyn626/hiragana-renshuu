@@ -130,18 +130,23 @@ function App() {
             <div
               className={`relative  border  ${flipped ? "border-amber-500  border-2" : "border-slate-400 "}  text-black  hover:shadow-inner transition-all duration-100 w-[300px] h-[300px] flex items-center justify-center rounded-sm p-2 `}
             >
-              <p className="text-9xl text-center hover:scale-110 transition-all duration-150">
-                {pastCharacters.length < shuffledFlashCards.length &&
-                flipped ? (
-                  shuffledFlashCards &&
-                  shuffledFlashCards[currentFlashcardIndex].answer
-                ) : (
-                  <span className="font-bolder">
-                    {shuffledFlashCards &&
-                      shuffledFlashCards[currentFlashcardIndex]?.hiragana}
-                  </span>
-                )}
-              </p>
+              {pastCharacters.length < shuffledFlashCards.length ? (
+                <p className="text-9xl text-center hover:scale-110 transition-all duration-150">
+                  {flipped ? (
+                    shuffledFlashCards &&
+                    shuffledFlashCards[currentFlashcardIndex].answer
+                  ) : (
+                    <span className="font-bolder">
+                      {shuffledFlashCards &&
+                        shuffledFlashCards[currentFlashcardIndex]?.hiragana}
+                    </span>
+                  )}
+                </p>
+              ) : (
+                <span className="text-sm text-center">
+                  You've finished all the flashcards! check below for record.
+                </span>
+              )}
 
               <button
                 onClick={() => setFlipped(!flipped)}
