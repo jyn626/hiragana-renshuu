@@ -10,7 +10,13 @@ function App() {
   const [knownsLength, setKnownsLength] = useState(0);
 
   const storePastCharacter = (char, isKnown) => {
-    if (currentFlashcardIndex + 1 == shuffledFlashCards.length) return;
+    // 70                             70
+    if (currentFlashcardIndex >= shuffledFlashCards.length) {
+      console.log("finished", currentFlashcardIndex, shuffledFlashCards.length);
+      return;
+    }
+
+    console.log(currentFlashcardIndex, shuffledFlashCards.length);
 
     if (isKnown) setKnownsLength(knownsLength + 1);
     else setUnknowsLength(unknownsLength + 1);
@@ -27,6 +33,8 @@ function App() {
       console.log("kochii desuu", updated);
       return updated;
     });
+
+    next();
   };
 
   const known = () => {
@@ -36,7 +44,6 @@ function App() {
     // state and include a true value which
     // means the user knows this hiragana
     storePastCharacter(character, true);
-    next();
   };
 
   const unknown = () => {
@@ -46,7 +53,6 @@ function App() {
     // state and include a false value which
     // means the user does not knows this hiragana
     storePastCharacter(character, false);
-    next();
   };
 
   function shuffleFlashCards(array) {
@@ -75,9 +81,12 @@ function App() {
   }
 
   function next() {
-    if (currentFlashcardIndex + 1 == shuffledFlashCards.length) return;
-    let nextIndex = currentFlashcardIndex + 1;
-    setCurrentFlashcardIndex(nextIndex);
+    // if (currentFlashcardIndex >= shuffledFlashCards.length - 1) {
+    //   console.log("completed all flashcards");
+    //   return;
+    // }
+
+    setCurrentFlashcardIndex((prev) => prev + 1);
     setFlipped(false);
   }
 
@@ -122,7 +131,8 @@ function App() {
               className={`relative  border  ${flipped ? "border-amber-500  border-2" : "border-slate-400 "}  text-black  hover:shadow-inner transition-all duration-100 w-[300px] h-[300px] flex items-center justify-center rounded-sm p-2 `}
             >
               <p className="text-9xl text-center hover:scale-110 transition-all duration-150">
-                {flipped ? (
+                {pastCharacters.length < shuffledFlashCards.length &&
+                flipped ? (
                   shuffledFlashCards &&
                   shuffledFlashCards[currentFlashcardIndex].answer
                 ) : (
@@ -141,7 +151,7 @@ function App() {
               </button>
             </div>
             <small className="mt-2 font-bold">
-              {currentFlashcardIndex + 1}/
+              {currentFlashcardIndex}/
               {shuffledFlashCards && shuffledFlashCards.length}
             </small>
             {/* buttons */}
