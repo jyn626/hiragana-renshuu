@@ -7,15 +7,35 @@ function App() {
   const [shuffledFlashCards, setShuffledFlashCards] = useState([]);
   const [knowns, setKnowns] = useState([]);
   const [unknowns, setUnknowns] = useState([]);
+  const [pastCharacters, setPastCharacters] = useState([]);
+
+  const storePastCharacter = (char, known) => {
+    setPastCharacters((prev) => {
+      const updated = [
+        ...prev,
+        {
+          ...char,
+          known,
+        },
+      ];
+
+      console.log("kochii desuu", updated);
+      return updated;
+    });
+  };
 
   const known = () => {
+    // TODO: refactor laterrr
     const knownCharacter = shuffledFlashCards[currentFlashcardIndex];
+
     setKnowns((prev) => {
       const updated = [...prev, knownCharacter];
       console.log(updated);
 
       return updated;
     });
+
+    storePastCharacter(knownCharacter, true);
     next();
   };
 
@@ -24,13 +44,18 @@ function App() {
   }, []);
 
   const unknown = () => {
+    // TODO: refactor laterrr
+
     const unknownCharacter = shuffledFlashCards[currentFlashcardIndex];
+
     setUnknowns((prev) => {
       const updated = [...prev, unknownCharacter];
       console.log(updated);
 
       return updated;
     });
+
+    storePastCharacter(unknownCharacter, false);
     next();
   };
 
@@ -68,7 +93,7 @@ function App() {
 
   return (
     <>
-      <main className=" h-[100vh] flex justify-center p-6">
+      <main className="flex justify-center p-6">
         <div className="border border-slate-200  py-2 w-[880px] flex flex-col items-start ">
           <div className="mb-12 w-full px-4 py-2 border-b border-gray-200 flex items-center gap-8">
             <img width="90" src="/public/nihongo.png" alt="" />
@@ -144,7 +169,7 @@ function App() {
             </div>
           </div>
 
-          <div className="p-2">
+          <div className="p-2 flex flex-row justify-around w-full">
             <table>
               <tbody className="border border-gray-200">
                 <tr className="p-2 bg-red-100 ">
@@ -152,6 +177,23 @@ function App() {
                   <th className="font-light px-4 py-2 text-sm">Answer</th>
                 </tr>
                 {unknowns.map(({ hiragana, answer }) => {
+                  return (
+                    <tr>
+                      <td className="text-center">{hiragana}</td>
+                      <td className="text-center">{answer}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+
+            <table>
+              <tbody className="border border-gray-200">
+                <tr className="p-2 bg-green-100 ">
+                  <th className="font-light px-4 py-2 text-sm">Hiragana</th>
+                  <th className="font-light px-4 py-2 text-sm">Answer</th>
+                </tr>
+                {knowns.map(({ hiragana, answer }) => {
                   return (
                     <tr>
                       <td className="text-center">{hiragana}</td>
