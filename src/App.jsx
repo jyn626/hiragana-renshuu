@@ -187,8 +187,13 @@ function App() {
             </div>
           </div>
 
-          <div className="border border-slate-200 rounded-sm p-2 w-full flex justify-center max-h-[500px] overflow-y-scroll">
-            <table className="w-100 ">
+          {/* records table */}
+          <div className="mt-12"></div>
+          <span className="text-sm font-extralight mb-2">
+            Results (けっか )
+          </span>
+          <div className=" border border-slate-200 rounded-sm p-2 w-full flex justify-center items-start  h-[368px] overflow-y-scroll">
+            <table className="w-full ">
               <tbody className="border border-gray-200">
                 <tr className="p-2 bg-green-100 ">
                   <th className="font-extralight px-4 py-2 text-sm">
