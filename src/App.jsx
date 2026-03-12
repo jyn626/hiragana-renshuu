@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { hiragana } from "./data/hiragana";
+import { Link } from "react-router-dom";
 
 function App() {
   const [flipped, setFlipped] = useState(false);
@@ -127,12 +128,15 @@ function App() {
           {/* exercises links */}
 
           <div className="mb-6 flex gap-2 items-center">
-            <button className="text-sm cursor-pointer bg-[#4CAF50] text-white px-4 py-1 rounded-xs">
+            <Link className="text-sm cursor-pointer bg-[#4CAF50] text-white px-4 py-1 rounded-xs">
               Flashcards
-            </button>
-            <button className="text-sm cursor-pointer bg-[#4CAF50] text-white px-4 py-1 rounded-xs">
+            </Link>
+            <Link
+              path="/reading"
+              className="text-sm cursor-pointer bg-[#4CAF50] text-white px-4 py-1 rounded-xs"
+            >
               Reading Practice
-            </button>
+            </Link>
           </div>
 
           {/* end exercises links */}
