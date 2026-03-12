@@ -1,5 +1,10 @@
+import Header from "../components/common/Header";
 function ReadingPractice() {
-  return <></>;
+  return (
+    <>
+      <Header></Header>
+    </>
+  );
 }
 
 export default ReadingPractice;
