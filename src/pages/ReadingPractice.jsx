@@ -27,9 +27,19 @@ function ReadingPractice() {
         <div className="p-2 border border-amber-200  w-full text-center">
           <h1 className="font-bold text-6xl">わたしは ねこです。</h1>
         </div>
+        <small className="mt-2">Input Romaji here</small>
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-1 w-full">
+          {"わたしはねこです".split("").map(() => (
+            <input
+              type="text"
+              maxLength={3}
+              className="px-2 w-[50px] border border-gray-400  outline-amber-400 "
+            />
+          ))}
+        </div>
 
         <div className="mt-6 w-full flex justify-center gap-4">
-          <button className=" cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px] h-[77px]">
+          <button className=" cursor-pointer bg-red-500/80 hover:bg-red-600  text-center text-white px-2 text-sm  w-[200px] h-[77px]">
             Reveal
           </button>
 
