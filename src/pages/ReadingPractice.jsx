@@ -19,9 +19,13 @@ function ReadingPractice() {
       <Page>
         <Header></Header>
 
-        <div>
-          <span>{timer}</span>
+        <div className="mb-12">
+          <span className="text-lg ">{timer}</span>
           {/* <span>00:30</span> */}
+        </div>
+
+        <div className="p-2 border border-amber-200  w-full text-center">
+          <h1 className="font-bold text-6xl">わたしは ねこです。</h1>
         </div>
       </Page>
     </>
