@@ -27,6 +27,16 @@ function ReadingPractice() {
         <div className="p-2 border border-amber-200  w-full text-center">
           <h1 className="font-bold text-6xl">わたしは ねこです。</h1>
         </div>
+
+        <div className="mt-6 w-full flex justify-center gap-4">
+          <button className=" cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px] h-[77px]">
+            Reveal
+          </button>
+
+          <button className=" cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px] h-[77px]">
+            Next
+          </button>
+        </div>
       </Page>
     </>
   );
