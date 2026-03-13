@@ -1,8 +1,12 @@
 import Header from "../components/common/Header";
+import Page from "../components/common/Page";
+
 function ReadingPractice() {
   return (
     <>
-      <Header></Header>
+      <Page>
+        <Header></Header>
+      </Page>
     </>
   );
 }
