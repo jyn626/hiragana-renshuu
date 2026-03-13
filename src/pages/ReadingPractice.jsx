@@ -6,11 +6,87 @@ function ReadingPractice() {
   const [timer, setTimer] = useState(30);
   const [answers, setAnswers] = useState([]);
   const [reveal, setReveal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(false);
   const [sentences, setSentences] = useState([
     {
       sentence: "わたしはねこです",
       answer: "wa ta shi wa ne ko de su",
       reveal: "watashi wa neko desu.",
+    },
+    {
+      sentence: "これはほんです",
+      answer: "ko re wa ho n de su",
+      reveal: "kore wa hon desu.",
+    },
+    {
+      sentence: "それはいぬです",
+      answer: "so re wa i nu de su",
+      reveal: "sore wa inu desu.",
+    },
+    {
+      sentence: "わたしはがくせいです",
+      answer: "wa ta shi wa ga ku se i de su",
+      reveal: "watashi wa gakusei desu.",
+    },
+    {
+      sentence: "ねこがいます",
+      answer: "ne ko ga i ma su",
+      reveal: "neko ga imasu.",
+    },
+    {
+      sentence: "いぬがいます",
+      answer: "i nu ga i ma su",
+      reveal: "inu ga imasu.",
+    },
+    {
+      sentence: "わたしはみずをのみます",
+      answer: "wa ta shi wa mi zu o no mi ma su",
+      reveal: "watashi wa mizu o nomimasu.",
+    },
+    {
+      sentence: "ごはんをたべます",
+      answer: "go ha n o ta be ma su",
+      reveal: "gohan o tabemasu.",
+    },
+    {
+      sentence: "ともだちがきます",
+      answer: "to mo da chi ga ki ma su",
+      reveal: "tomodachi ga kimasu.",
+    },
+    {
+      sentence: "わたしはいえにいきます",
+      answer: "wa ta shi wa i e ni i ki ma su",
+      reveal: "watashi wa ie ni ikimasu.",
+    },
+    {
+      sentence: "ねこはかわいいです",
+      answer: "ne ko wa ka wa i i de su",
+      reveal: "neko wa kawaii desu.",
+    },
+    {
+      sentence: "いぬはおおきいです",
+      answer: "i nu wa o o ki i de su",
+      reveal: "inu wa ookii desu.",
+    },
+    {
+      sentence: "わたしはほんをよみます",
+      answer: "wa ta shi wa ho n o yo mi ma su",
+      reveal: "watashi wa hon o yomimasu.",
+    },
+    {
+      sentence: "みずをのみます",
+      answer: "mi zu o no mi ma su",
+      reveal: "mizu o nomimasu.",
+    },
+    {
+      sentence: "ともだちとあそびます",
+      answer: "to mo da chi to a so bi ma su",
+      reveal: "tomodachi to asobimasu.",
+    },
+    {
+      sentence: "わたしはにほんごをべんきょうします",
+      answer: "wa ta shi wa ni ho n go o be n kyo u shi ma su",
+      reveal: "watashi wa nihongo o benkyou shimasu.",
     },
   ]);
 
