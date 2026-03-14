@@ -118,12 +118,12 @@ function ReadingPractice() {
     const isCorrect = shuffledSentences[currentIndex].answer == answer;
     console.log(isCorrect);
     if (isCorrect) {
+      setAnswers([]);
+      setCurrentIndex((prev) => prev + 1);
       alert("Tadashii desuu");
     } else {
       alert("Machigai desuu");
     }
-    setAnswers([]);
-    setCurrentIndex((prev) => prev + 1);
   };
 
   function shuffle(array) {
@@ -146,6 +146,13 @@ function ReadingPractice() {
     const shuffled = shuffle(sentences);
     setShuffledSentences(shuffled);
   }, []);
+
+  useEffect(() => {
+    const firstInput = document.querySelector('input[type="text"]');
+    if (firstInput) {
+      firstInput.focus();
+    }
+  }, [currentIndex]);
 
   return (
     <>
