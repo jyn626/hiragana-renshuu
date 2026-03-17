@@ -4,14 +4,16 @@ import Page from "../components/common/Page";
 import { useFetcher } from "react-router-dom";
 
 function ReadingPractice() {
-  const INITIAL_TIMER = 30;
-  const [timer, setTimer] = useState(INITIAL_TIMER);
+  // const INITIAL_TIMER = 30;
+  // const [timer, setTimer] = useState(INITIAL_TIMER);
   const [answers, setAnswers] = useState([]);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [showResultModal, setResultShowModal] = useState(false);
   const [reveal, setReveal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [shuffledSentences, setShuffledSentences] = useState([]);
   const [start, setStart] = useState(false);
-  const [isTimesUp, setIsTimesUp] = useState(false);
+  // const [isTimesUp, setIsTimesUp] = useState(false);
   const sentences = [
     {
       hiragana: "わたしはねこです",
@@ -99,24 +101,24 @@ function ReadingPractice() {
   //   console.log("answer", answers);
   // }, [answers]);
 
-  // handle time's up
-  useEffect(() => {
-    if (timer == 0) {
-      setIsTimesUp(true);
-      setReveal(true);
-    }
-  }, [timer]);
+  // // handle time's up
+  // useEffect(() => {
+  //   if (timer == 0) {
+  //     setIsTimesUp(true);
+  //     setReveal(true);
+  //   }
+  // }, [timer]);
 
-  useEffect(() => {
-    if (!start || isTimesUp) {
-      return;
-    }
-    const interval = setInterval(() => {
-      setTimer((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
+  // useEffect(() => {
+  //   if (!start || isTimesUp) {
+  //     return;
+  //   }
+  //   const interval = setInterval(() => {
+  //     setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, [start]);
+  //   return () => clearInterval(interval);
+  // }, [start]);
 
   const checkAnswer = () => {
     const filterWhiteSpaces = answers.map((str) => {
@@ -131,11 +133,13 @@ function ReadingPractice() {
     const isCorrect = shuffledSentences[currentIndex].answer == answer;
     console.log(isCorrect);
     if (isCorrect) {
+      setResultShowModal(true);
+      setIsCorrect(true);
       setAnswers([]);
       setCurrentIndex((prev) => prev + 1);
-      alert("Tadashii desuu");
     } else {
-      alert("Machigai desuu");
+      setResultShowModal(false);
+      setIsCorrect(false);
     }
   };
 
@@ -169,8 +173,8 @@ function ReadingPractice() {
 
   function restart() {
     setAnswers([]);
-    setIsTimesUp(false);
-    setTimer(INITIAL_TIMER);
+    // setIsTimesUp(false);
+    // setTimer(INITIAL_TIMER);
     setReveal(false);
     const shuffled = shuffle([...sentences]);
     setShuffledSentences(shuffled);
@@ -181,9 +185,23 @@ function ReadingPractice() {
     <>
       <Page>
         <Header></Header>
+        <div
+          className={`${showResultModal ? "" : "hidden"} w-[600px] bg-slate-50/80 p-5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center flex-col`}
+        >
+          <div className="flex flex-row gap-4 items-center">
+            <p className="text-blue-800 underline font-bold">
+              せかい <span className="font-extralight text-xs">(correct)</span>
+            </p>
+            <img width="200" src="/pose_peace_sign_woman.png" alt="" />
+          </div>
+          <button className="cursor-pointer  bg-[#4CAF50]/80 hover:bg-[#4CAF50] text-white font-light text-sm px-2 ">
+            Continue
+          </button>
+        </div>
+
         {start ? (
           <>
-            {isTimesUp && (
+            {/* {isTimesUp && (
               <>
                 <div className="mb-4  flex gap-4 justify-between border border-slate-50 p-2 w-full">
                   <div className="flex gap-4">
@@ -204,12 +222,12 @@ function ReadingPractice() {
                   </div>
                 </div>
               </>
-            )}
+            )} */}
 
-            <div className="mb-12">
+            {/* <div className="mb-12">
               <span className="text-lg ">Timer: {timer}s</span>
-              {/* <span>00:30</span> */}
-            </div>
+              <span>00:30</span>
+            </div> */}
 
             <div className="p-2 border border-amber-200  w-full text-center">
               <h1
@@ -228,7 +246,7 @@ function ReadingPractice() {
                   <input
                     key={`${currentIndex}-${index}`}
                     type="text"
-                    disabled={isTimesUp}
+                    disabled={false}
                     maxLength={3}
                     value={reveal ? answer : (answers[index] ?? "")}
                     onChange={(e) => {
@@ -236,7 +254,8 @@ function ReadingPractice() {
                       newAnswers[index] = e.target.value;
                       setAnswers(newAnswers);
                     }}
-                    className={`px-2 w-[50px] border border-gray-400 outline-amber-400 ${isTimesUp ? "bg-gray-200 text-gray-500 opacity-60" : ""}`}
+                    // className={`px-2 w-[50px] border border-gray-400 outline-amber-400 ${isTimesUp ? "bg-gray-200 text-gray-500 opacity-60" : ""}`}
+                    className={`px-2 w-[50px] border border-gray-400 outline-amber-400 ${false ? "bg-gray-200 text-gray-500 opacity-60" : ""}`}
                   />
                 ))}
             </div>
@@ -244,16 +263,16 @@ function ReadingPractice() {
             <div className="mt-6 w-full flex justify-center gap-4">
               <button
                 onClick={(e) => setReveal(!reveal)}
-                disabled={isTimesUp}
-                className={` cursor-pointer bg-red-500/80 hover:bg-red-600  text-center text-white px-2 text-sm  w-[200px] h-[77px] ${isTimesUp ? "opacity-50 cursor-not-allowed hover:bg-red-500/80" : ""}`}
+                disabled={false}
+                className={` cursor-pointer bg-red-500/80 hover:bg-red-600  text-center text-white px-2 text-sm  w-[200px] h-[77px]`}
               >
                 Reveal
               </button>
 
               <button
                 onClick={checkAnswer}
-                disabled={isTimesUp}
-                className={` cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px] h-[77px] ${isTimesUp ? "opacity-50 cursor-not-allowed hover:bg-[#4CAF50]/80" : ""}`}
+                disabled={false}
+                className={` cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px] h-[77px]`}
               >
                 Attempt
               </button>
