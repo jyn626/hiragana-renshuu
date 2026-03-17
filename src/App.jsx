@@ -180,9 +180,7 @@ function App() {
                 <th className="font-extralight px-4 py-2 text-sm">Hiragana</th>
                 <th className="font-extralight px-4 py-2 text-sm">Answer</th>
                 {/* TODO: find a better label than this lol */}
-                <th className="font-extralight px-4 py-2 text-sm">
-                  Is correct?
-                </th>
+                <th className="font-extralight px-4 py-2 text-sm">Result</th>
               </tr>
               {pastCharacters.map(({ hiragana, answer, isKnown }) => {
                 return (
@@ -195,7 +193,7 @@ function App() {
                     </td>
                     <td className="border border-gray-300 text-center">
                       <span className="font-extralight text-sm">
-                        {isKnown ? "せいかい (✔️)" : "まちがい (❌)"}
+                        {isKnown ? "ただし (✔️)" : "まちがい (❌)"}
                       </span>
                     </td>
                   </tr>
