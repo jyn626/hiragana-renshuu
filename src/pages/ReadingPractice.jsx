@@ -191,7 +191,7 @@ function ReadingPractice() {
       <Page>
         <Header></Header>
         <div
-          className={`${showResultModal ? "" : "hidden"} w-[600px] bg-slate-50/80 p-5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center flex-col`}
+          className={`${showResultModal ? "" : "hidden"} shadow-inner  w-[600px] bg-slate-50/80 p-5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center flex-col`}
         >
           <div className="flex flex-row gap-4 items-center">
             <p className="text-blue-800  font-bold">
@@ -234,13 +234,12 @@ function ReadingPractice() {
               <span>00:30</span>
             </div> */}
         <div className="flex items-center gap-4 mb-4">
-          <img width="100" src="/pose_peace_sign_woman.png" alt="" />
+          <img width="100" src="/kafun_sukkiri_woman.png" alt="" />
 
-          <p className="text-gray-600 font-extralight text-sm">
+          <p className="text-gray-600 font-light text-sm">
             Here, you will be translating hiragana characters to romaji.
-            <span className="text-sm block text-slate-400">
-              This practice will be timed for 30s by default, you can customize
-              or disable the timer on the options above.
+            <span className="text-sm block text-blue-400">
+              ここでは、ひらがなをローマじにほんやくします。
             </span>
           </p>
         </div>
@@ -254,7 +253,7 @@ function ReadingPractice() {
               : shuffledSentences[currentIndex]?.hiragana}
           </h1>
         </div>
-        <small className="mt-2">Write the romaji</small>
+        {/* <small className="mt-2">Write the romaji</small> */}
         <div className="mt-4 flex flex-wrap items-center justify-center gap-1 w-full">
           {shuffledSentences[currentIndex]?.answer
             .split(" ")
@@ -280,7 +279,7 @@ function ReadingPractice() {
           <button
             onClick={(e) => setReveal(!reveal)}
             disabled={false}
-            className={` cursor-pointer bg-red-500/80 hover:bg-red-600  text-center text-white px-2 text-sm  w-[200px] h-[77px]`}
+            className={`cursor-pointer bg-amber-500/80 hover:bg-amber-500  text-center text-white px-2 text-xs px-6 py-2`}
           >
             Reveal
           </button>
@@ -288,7 +287,7 @@ function ReadingPractice() {
           <button
             onClick={checkAnswer}
             disabled={false}
-            className={` cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px] h-[77px]`}
+            className={`cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm px-6 py-2 text-xs`}
           >
             Attempt
           </button>
