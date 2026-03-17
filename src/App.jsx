@@ -25,46 +25,24 @@ function App() {
 
   const storePastCharacter = (char, isKnown) => {
     if (currentFlashcardIndex >= shuffledFlashCards.length) {
-      console.log("finished", currentFlashcardIndex, shuffledFlashCards.length);
       return;
     }
-
-    console.log(currentFlashcardIndex, shuffledFlashCards.length);
 
     if (isKnown) setKnownsLength(knownsLength + 1);
     else setUnknowsLength(unknownsLength + 1);
 
-    setPastCharacters((prev) => {
-      const updated = [
-        ...prev,
-        {
-          ...char,
-          isKnown,
-        },
-      ];
-
-      console.log("kochii desuu", updated);
-      return updated;
-    });
+    setPastCharacters((prev) => [...prev, { ...char, isKnown }]);
 
     next();
   };
 
   const known = () => {
     const character = shuffledFlashCards[currentFlashcardIndex];
-
-    // store the character at `pastCharacters`
-    // state and include a true value which
-    // means the user knows this hiragana
     storePastCharacter(character, true);
   };
 
   const unknown = () => {
     const character = shuffledFlashCards[currentFlashcardIndex];
-
-    // store the character at `pastCharacters`
-    // state and include a false value which
-    // means the user does not knows this hiragana
     storePastCharacter(character, false);
   };
 
@@ -79,55 +57,56 @@ function App() {
 
   function shuffle(array) {
     let currentIndex = array.length;
-
     while (currentIndex != 0) {
       const randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
         array[currentIndex],
       ];
     }
-
     return array;
   }
 
   function next() {
-    // if (currentFlashcardIndex >= shuffledFlashCards.length - 1) {
-    //   console.log("completed all flashcards");
-    //   return;
-    // }
-
     setCurrentFlashcardIndex((prev) => prev + 1);
     setFlipped(false);
   }
+
+  const isFinished =
+    pastCharacters.length >= shuffledFlashCards.length &&
+    shuffledFlashCards.length > 0;
 
   return (
     <>
       <Page>
         {/* header */}
-        <Header></Header>
+        <Header />
         {/* end header */}
-        <div className="w-full flex flex-col items-center justify-center">
+
+        <div className="w-full flex flex-col items-center justify-center px-4 sm:px-0">
+          {/* Flashcard */}
           <div
-            className={`relative  border  ${flipped ? "border-amber-500  border-2" : "border-slate-400 "}  text-black  hover:shadow-inner transition-all duration-100 w-[300px] h-[300px] flex items-center justify-center rounded-sm p-2 `}
+            className={`relative border ${
+              flipped ? "border-amber-500 border-2" : "border-slate-400"
+            } text-black hover:shadow-inner transition-all duration-100
+              w-full max-w-[300px] sm:w-[300px]
+              h-[240px] sm:h-[300px]
+              flex items-center justify-center rounded-sm p-2`}
           >
-            {pastCharacters.length < shuffledFlashCards.length ? (
-              <p className="text-9xl text-center hover:scale-110 transition-all duration-150">
+            {!isFinished ? (
+              <p className="text-7xl sm:text-9xl text-center hover:scale-110 transition-all duration-150">
                 {flipped ? (
-                  shuffledFlashCards &&
-                  shuffledFlashCards[currentFlashcardIndex].answer
+                  shuffledFlashCards[currentFlashcardIndex]?.answer
                 ) : (
                   <span className="font-bolder">
-                    {shuffledFlashCards &&
-                      shuffledFlashCards[currentFlashcardIndex]?.hiragana}
+                    {shuffledFlashCards[currentFlashcardIndex]?.hiragana}
                   </span>
                 )}
               </p>
             ) : (
-              <span className="text-sm text-center">
-                You've finished all the flashcards! check below for record.
+              <span className="text-sm text-center px-4">
+                You've finished all the flashcards! Check below for record.
               </span>
             )}
 
@@ -138,67 +117,73 @@ function App() {
               flip
             </button>
           </div>
+
           <small className="mt-2 font-bold">
-            {currentFlashcardIndex}/
-            {shuffledFlashCards && shuffledFlashCards.length}
+            {currentFlashcardIndex}/{shuffledFlashCards?.length}
           </small>
-          {/* buttons */}
-          <div className="flex gap-4 mt-8">
-            <div className="flex flex-col text-center">
+
+          {/* Buttons */}
+          <div className="flex gap-3 sm:gap-4 mt-6 sm:mt-8 w-full max-w-[420px]">
+            <div className="flex flex-col text-center flex-1">
               <button
                 onClick={unknown}
-                className="cursor-pointer  bg-[#457B9D]/80 hover:bg-[#457B9D] text-center  text-white px-2 text-sm w-[200px] h-[77px]"
+                className="cursor-pointer bg-[#457B9D]/80 hover:bg-[#457B9D] text-center text-white px-2 text-sm w-full h-[64px] sm:h-[77px]"
               >
                 I don't know{" "}
-                <span className="font-bold text-xs"> ({unknownsLength}) </span>
+                <span className="font-bold text-xs">({unknownsLength})</span>
               </button>
               <small>わかりません</small>
             </div>
-            <div className="flex flex-col text-center">
+            <div className="flex flex-col text-center flex-1">
               <button
                 onClick={known}
-                className=" cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm  w-[200px] h-[77px]"
+                className="cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50] text-center text-white px-2 text-sm w-full h-[64px] sm:h-[77px]"
               >
-                I know
-                <span className="font-bold text-xs"> ({knownsLength}) </span>
+                I know{" "}
+                <span className="font-bold text-xs">({knownsLength})</span>
               </button>
               <small>わかります</small>
             </div>
           </div>
         </div>
 
-        {/* records table */}
-        <div className="mt-12"></div>
-        <span className="text-sm font-extralight mb-2">Results (けっか )</span>
+        {/* Records table */}
+        <div className="mt-8 sm:mt-12 px-4 sm:px-0 w-full"></div>
+        <span className="text-sm font-extralight mb-2 px-4 sm:px-0">
+          Results (けっか)
+        </span>
         <div
           ref={tableContainer}
-          className=" border border-slate-200 rounded-sm p-2 w-full flex justify-center items-start  h-[368px] overflow-y-scroll"
+          className="border border-slate-200 rounded-sm p-2 w-full flex justify-center items-start h-[300px] sm:h-[368px] overflow-y-scroll mx-0"
         >
-          <table className="w-full ">
+          <table className="w-full">
             <tbody className="border border-gray-200">
-              <tr className="p-2 bg-green-100 ">
-                <th className="font-extralight px-4 py-2 text-sm">Hiragana</th>
-                <th className="font-extralight px-4 py-2 text-sm">Answer</th>
-                {/* TODO: find a better label than this lol */}
-                <th className="font-extralight px-4 py-2 text-sm">Result</th>
+              <tr className="p-2 bg-green-100">
+                <th className="font-extralight px-2 sm:px-4 py-2 text-xs sm:text-sm">
+                  Hiragana
+                </th>
+                <th className="font-extralight px-2 sm:px-4 py-2 text-xs sm:text-sm">
+                  Answer
+                </th>
+                <th className="font-extralight px-2 sm:px-4 py-2 text-xs sm:text-sm">
+                  Result
+                </th>
               </tr>
-              {pastCharacters.map(({ hiragana, answer, isKnown }) => {
-                return (
-                  <tr>
-                    <td className="border border-gray-300 text-center font-bold">
-                      {hiragana}
-                    </td>
-                    <td className="border border-gray-300 text-center">
-                      {answer}
-                    </td>
-                    <td className="border border-gray-300 text-center">
-                      <span className="font-extralight text-sm">
-                        {isKnown ? "ただし (✔️)" : "まちがい (❌)"}
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
+              {pastCharacters.map(({ hiragana, answer, isKnown }, index) => (
+                <tr key={index}>
+                  <td className="border border-gray-300 text-center font-bold text-sm sm:text-base py-1">
+                    {hiragana}
+                  </td>
+                  <td className="border border-gray-300 text-center text-sm sm:text-base py-1">
+                    {answer}
+                  </td>
+                  <td className="border border-gray-300 text-center py-1">
+                    <span className="font-extralight text-xs sm:text-sm">
+                      {isKnown ? "ただし (✔️)" : "まちがい (❌)"}
+                    </span>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

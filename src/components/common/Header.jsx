@@ -10,10 +10,10 @@ function Header() {
 
   return (
     <>
-      <div className="mb-6 w-full px-4 py-2 border-b border-gray-200 flex justify-between  items-center gap-8">
-        <div className="flex gap-2 items-center">
+      <div className="mb-6 w-full px-4 py-2 border-b border-gray-200 flex flex-col md:flex-row justify-between  items-center md:gap-8">
+        <div className="flex flex-col md:flex-row gap-2 items-center">
           <img width="90" src="/nihongo.png" alt="" />
-          <div>
+          <div className="text-center md:text-start">
             <h4 className="font-semibold">
               ひらがな<small className="font-light">(hiragana)</small>{" "}
               Flashcards
