@@ -189,40 +189,44 @@ function ReadingPractice() {
   return (
     <>
       <Page>
-        <Header></Header>
-        <div
-          className={`${showResultModal ? "" : "hidden"} shadow-inner  w-[600px] bg-slate-50/80 p-5 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center flex-col`}
-        >
-          <div className="flex flex-row gap-4 items-center">
-            <p className="text-blue-800  font-bold">
-              {isCorrect ? (
-                <>
-                  {" "}
-                  せかい{" "}
-                  <span className="font-extralight text-xs">(correct)</span>
-                </>
-              ) : (
-                <>
-                  {" "}
-                  まちがい{" "}
-                  <span className="font-extralight text-xs">(mistake)</span>
-                </>
-              )}
-            </p>
-            <img
-              width={`${isCorrect ? "200" : "150"}`}
-              src={`${isCorrect ? "/pose_peace_sign_woman.png" : "ahiruguchi_woman.png"}`}
-              alt=""
-            />
-          </div>
-          <button
-            onClick={next}
-            className="cursor-pointer  bg-[#4CAF50]/80 hover:bg-[#4CAF50] text-white font-light text-sm px-2 "
+        <div className="relative w-full">
+          <Header></Header>
+          <div
+            className={`${showResultModal ? "" : "hidden"} absolute shadow-inner  w-[600px] bg-slate-50/80 p-5  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center flex-col`}
           >
-            Next
-          </button>
-        </div>
-        {/* {isTimesUp && (
+            <div className="flex flex-row gap-4 items-center">
+              <p className="text-blue-800  font-bold">
+                {isCorrect ? (
+                  <>
+                    {" "}
+                    せかい{" "}
+                    <span className="font-extralight text-xs">(correct)</span>
+                    <p className="block">
+                      {shuffledSentences[currentIndex].romaji}
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    まちがい{" "}
+                    <span className="font-extralight text-xs">(mistake)</span>
+                  </>
+                )}
+              </p>
+              <img
+                width={`${isCorrect ? "200" : "150"}`}
+                src={`${isCorrect ? "/pose_peace_sign_woman.png" : "ahiruguchi_woman.png"}`}
+                alt=""
+              />
+            </div>
+            <button
+              onClick={next}
+              className="cursor-pointer  bg-[#4CAF50]/80 hover:bg-[#4CAF50] text-white font-light text-sm px-2 "
+            >
+              Next
+            </button>
+          </div>
+          {/* {isTimesUp && (
               <>
                 <div className="mb-4  flex gap-4 justify-between border border-slate-50 p-2 w-full">
                   <div className="flex gap-4">
@@ -245,68 +249,70 @@ function ReadingPractice() {
               </>
             )} */}
 
-        {/* <div className="mb-12">
+          {/* <div className="mb-12">
               <span className="text-lg ">Timer: {timer}s</span>
               <span>00:30</span>
             </div> */}
-        <div className="flex items-center gap-4 mb-4">
-          <img width="100" src="/talk6_pink_woman.png" alt="" />
 
-          <p className="text-gray-600 font-light text-sm">
-            Here, you will be translating hiragana characters to romaji.
-            <span className="text-sm block text-blue-400">
-              ここでは、ひらがなをローマじにほんやくします。
-            </span>
-          </p>
-        </div>
+          <div className="flex items-center gap-4 mb-4">
+            <img width="100" src="/talk6_pink_woman.png" alt="" />
 
-        <div className="p-2 border border-amber-200  w-full text-center">
-          <h1
-            className={`  ${reveal ? "font-ligh text-4xl" : "font-bold text-6xl "}`}
-          >
-            {reveal
-              ? shuffledSentences[currentIndex]?.romaji
-              : shuffledSentences[currentIndex]?.hiragana}
-          </h1>
-        </div>
-        {/* <small className="mt-2">Write the romaji</small> */}
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-1 w-full">
-          {shuffledSentences[currentIndex]?.answer
-            .split(" ")
-            .map((answer, index) => (
-              <input
-                key={`${currentIndex}-${index}`}
-                type="text"
-                disabled={false}
-                maxLength={3}
-                value={reveal ? answer : (answers[index] ?? "")}
-                onChange={(e) => {
-                  const newAnswers = [...answers];
-                  newAnswers[index] = e.target.value;
-                  setAnswers(newAnswers);
-                }}
-                // className={`px-2 w-[50px] border border-gray-400 outline-amber-400 ${isTimesUp ? "bg-gray-200 text-gray-500 opacity-60" : ""}`}
-                className={`px-2 w-[50px] border border-gray-400 outline-amber-400 ${false ? "bg-gray-200 text-gray-500 opacity-60" : ""}`}
-              />
-            ))}
-        </div>
+            <p className="text-gray-600 font-light text-sm">
+              Here, you will be translating hiragana characters to romaji.
+              <span className="text-sm block text-blue-400">
+                ここでは、ひらがなをローマじにほんやくします。
+              </span>
+            </p>
+          </div>
 
-        <div className="mt-6 w-full flex justify-center gap-4">
-          <button
-            onClick={(e) => setReveal(!reveal)}
-            disabled={false}
-            className={`cursor-pointer bg-amber-500/80 hover:bg-amber-500  text-center text-white px-2 text-xs px-6 py-2`}
-          >
-            Reveal
-          </button>
+          <div className="p-2 border border-amber-200  w-full text-center">
+            <h1
+              className={`  ${reveal ? "font-ligh text-4xl" : "font-bold text-6xl "}`}
+            >
+              {reveal
+                ? shuffledSentences[currentIndex]?.romaji
+                : shuffledSentences[currentIndex]?.hiragana}
+            </h1>
+          </div>
+          {/* <small className="mt-2">Write the romaji</small> */}
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-1 w-full">
+            {shuffledSentences[currentIndex]?.answer
+              .split(" ")
+              .map((answer, index) => (
+                <input
+                  key={`${currentIndex}-${index}`}
+                  type="text"
+                  disabled={showResultModal}
+                  maxLength={3}
+                  value={reveal ? answer : (answers[index] ?? "")}
+                  onChange={(e) => {
+                    const newAnswers = [...answers];
+                    newAnswers[index] = e.target.value;
+                    setAnswers(newAnswers);
+                  }}
+                  className={`px-2 w-[50px] border border-gray-400 outline-amber-400 ${showResultModal ? "bg-gray-200 text-gray-500 opacity-60" : ""}`}
+                  // className={`px-2 w-[50px] border border-gray-400 outline-amber-400 ${false ? "bg-gray-200 text-gray-500 opacity-60" : ""}`}
+                />
+              ))}
+          </div>
 
-          <button
-            onClick={checkAnswer}
-            disabled={false}
-            className={`cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm px-6 py-2 text-xs`}
-          >
-            Attempt
-          </button>
+          <div className="mt-6 w-full flex justify-center gap-4">
+            <button
+              onClick={(e) => setReveal(!reveal)}
+              disabled={false}
+              className={`cursor-pointer bg-amber-500/80 hover:bg-amber-500  text-center text-white px-2 text-xs px-6 py-2`}
+            >
+              Reveal
+            </button>
+
+            <button
+              onClick={checkAnswer}
+              disabled={false}
+              className={`cursor-pointer bg-[#4CAF50]/80 hover:bg-[#4CAF50]  text-center text-white px-2 text-sm px-6 py-2 text-xs`}
+            >
+              Attempt
+            </button>
+          </div>
         </div>
       </Page>
     </>
