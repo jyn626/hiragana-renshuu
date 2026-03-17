@@ -212,7 +212,9 @@ function ReadingPractice() {
             </div>
 
             <div className="p-2 border border-amber-200  w-full text-center">
-              <h1 className="font-bold text-6xl">
+              <h1
+                className={`  ${reveal ? "font-ligh text-4xl" : "font-bold text-6xl "}`}
+              >
                 {reveal
                   ? shuffledSentences[currentIndex]?.romaji
                   : shuffledSentences[currentIndex]?.hiragana}
