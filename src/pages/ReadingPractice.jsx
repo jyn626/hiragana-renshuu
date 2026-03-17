@@ -137,7 +137,7 @@ function ReadingPractice() {
       setIsCorrect(true);
       setAnswers([]);
     } else {
-      setResultShowModal(false);
+      setResultShowModal(true);
       setIsCorrect(false);
     }
   };
@@ -195,9 +195,25 @@ function ReadingPractice() {
         >
           <div className="flex flex-row gap-4 items-center">
             <p className="text-blue-800  font-bold">
-              せかい <span className="font-extralight text-xs">(correct)</span>
+              {isCorrect ? (
+                <>
+                  {" "}
+                  せかい{" "}
+                  <span className="font-extralight text-xs">(correct)</span>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  まちがい{" "}
+                  <span className="font-extralight text-xs">(mistake)</span>
+                </>
+              )}
             </p>
-            <img width="200" src="/pose_peace_sign_woman.png" alt="" />
+            <img
+              width={`${isCorrect ? "200" : "150"}`}
+              src={`${isCorrect ? "/pose_peace_sign_woman.png" : "ahiruguchi_woman.png"}`}
+              alt=""
+            />
           </div>
           <button
             onClick={next}
@@ -234,7 +250,7 @@ function ReadingPractice() {
               <span>00:30</span>
             </div> */}
         <div className="flex items-center gap-4 mb-4">
-          <img width="100" src="/kafun_sukkiri_woman.png" alt="" />
+          <img width="100" src="/talk6_pink_woman.png" alt="" />
 
           <p className="text-gray-600 font-light text-sm">
             Here, you will be translating hiragana characters to romaji.
