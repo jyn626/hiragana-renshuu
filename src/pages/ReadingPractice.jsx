@@ -192,7 +192,7 @@ function ReadingPractice() {
         <div className="relative w-full">
           <Header></Header>
           <div
-            className={`${showResultModal ? "" : "hidden"} absolute shadow-inner  w-[600px] bg-slate-50/80 p-5  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center flex-col`}
+            className={`${showResultModal ? "" : "hidden"} absolute shadow-inner  w-full md:w-[600px] bg-slate-50/80 p-5  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center flex-col`}
           >
             <div className="flex flex-row gap-4 items-center">
               <p className="text-blue-800  font-bold">
