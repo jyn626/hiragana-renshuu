@@ -1,7 +1,7 @@
 function Page({ children }) {
   return (
     <>
-      <main className="flex flex-col items-center justify-between min-h-[100vh] p-2  bg-slate-50 ">
+      <main className="flex flex-col items-center justify-between min-h-[100vh] p-2 ">
         <div className="py-2 w-full max-w-[880px] flex flex-col items-start border border-slate-200 px-2 bg-white ">
           {children}
         </div>
