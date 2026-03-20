@@ -268,7 +268,7 @@ function ReadingPractice() {
               <span>00:30</span>
             </div> */}
 
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-4 mb-4 px-12">
             <img width="100" src="/talk6_pink_woman.png" alt="" />
 
             <p className="text-gray-600 font-light text-sm">

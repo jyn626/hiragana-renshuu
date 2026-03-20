@@ -86,12 +86,15 @@ function App() {
         <div className="w-full flex flex-col items-center justify-center px-4 sm:px-0">
           {/* Flashcard */}
           <div
+            key={currentFlashcardIndex}
             className={`relative border ${
               flipped ? "border-amber-500 border-2" : "border-slate-400"
             } text-black transition-all duration-100 w-full max-w-[300px] sm:w-[300px] h-[240px] sm:h-[300px] rounded-sm p-2`}
             style={{ perspective: "1000px" }}
           >
-            <div className={`flashcard-inner ${flipped ? "flipped" : ""}`}>
+            <div
+              className={`flashcard-inner ${flipped ? "flipped" : ""} flashcard-slide`}
+            >
               {/* Front */}
               <div className="flashcard-front">
                 {!isFinished ? (
