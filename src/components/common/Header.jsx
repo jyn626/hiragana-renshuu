@@ -32,9 +32,9 @@ function Header() {
             <Link to="/">flashcards</Link>
           </small>
           <small
-            className={`font-bold ${path == "/reading" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
+            className={`font-bold ${path == "/read-type" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
           >
-            <Link to="/reading">hiragana: read & type</Link>
+            <Link to="/read-type">hiragana: read & type</Link>
           </small>
 
           <small
@@ -44,9 +44,9 @@ function Header() {
           </small>
 
           <small
-            className={`font-bold ${path == "/quiz" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
+            className={`font-bold ${path == "/reading" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
           >
-            <Link to="/quiz">quiz</Link>
+            <Link to="/reading">reading</Link>
           </small>
         </div>
       </div>

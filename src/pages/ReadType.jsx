@@ -1,9 +1,8 @@
-import { useEffect, useEffectEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/common/Header";
 import Page from "../components/common/Page";
-import { useFetcher } from "react-router-dom";
 
-function ReadingPractice() {
+function ReadType() {
   // const INITIAL_TIMER = 30;
   // const [timer, setTimer] = useState(INITIAL_TIMER);
   const [answers, setAnswers] = useState([]);
@@ -333,4 +332,4 @@ function ReadingPractice() {
   );
 }
 
-export default ReadingPractice;
+export default ReadType;

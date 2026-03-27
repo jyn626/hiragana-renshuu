@@ -65,7 +65,7 @@ const quizData = [
   },
 ];
 
-export default function Quiz() {
+export default function Reading() {
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [countdown, setCountdown] = useState(null);
