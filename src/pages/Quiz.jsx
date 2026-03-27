@@ -2,53 +2,133 @@ import { useState } from "react";
 import Page from "../components/common/Page";
 import Header from "../components/common/Header";
 
-const data = {
-  word: "すみません",
-  wordTranslation: "Excuse me / I'm sorry",
-  sentence: "すみません、えきはどこですか。",
-  sentenceTranslation: "Excuse me, where is the train station?",
-};
+const quizData = [
+  {
+    word: "すみません",
+    wordTranslation: "Excuse me / I'm sorry",
+    sentence: "すみません、えきはどこですか。",
+    sentenceTranslation: "Excuse me, where is the train station?",
+  },
+  {
+    word: "ありがとう",
+    wordTranslation: "Thank you",
+    sentence: "たすけてくれて、ありがとうございます。",
+    sentenceTranslation: "Thank you for helping me.",
+  },
+  {
+    word: "おはよう",
+    wordTranslation: "Good morning",
+    sentence: "おはようございます、きょうはいいてんきですね。",
+    sentenceTranslation: "Good morning, the weather is nice today, isn't it?",
+  },
+  {
+    word: "たべる",
+    wordTranslation: "To eat",
+    sentence: "わたしはすしをたべるのがすきです。",
+    sentenceTranslation: "I like eating sushi.",
+  },
+  {
+    word: "みず",
+    wordTranslation: "Water",
+    sentence: "みずをいっぱいのんでください。",
+    sentenceTranslation: "Please drink a lot of water.",
+  },
+  {
+    word: "がっこう",
+    wordTranslation: "School",
+    sentence: "まいにちがっこうにいきます。",
+    sentenceTranslation: "I go to school every day.",
+  },
+  {
+    word: "ともだち",
+    wordTranslation: "Friend",
+    sentence: "かれはわたしのいちばんのともだちです。",
+    sentenceTranslation: "He is my best friend.",
+  },
+  {
+    word: "よむ",
+    wordTranslation: "To read",
+    sentence: "まいばんほんをよみます。",
+    sentenceTranslation: "I read a book every night.",
+  },
+  {
+    word: "でんしゃ",
+    wordTranslation: "Train",
+    sentence: "でんしゃにのっておおさかにいきました。",
+    sentenceTranslation: "I took the train to Osaka.",
+  },
+  {
+    word: "すき",
+    wordTranslation: "Like / Fond of",
+    sentence: "あなたのことがすきです。",
+    sentenceTranslation: "I like you.",
+  },
+];
 
 export default function Quiz() {
+  const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
+
+  const current = quizData[index];
+
+  const handleNext = () => {
+    setRevealed(false);
+    setTimeout(() => {
+      setIndex((prev) => (prev + 1) % quizData.length);
+    }, 150);
+  };
 
   return (
     <>
       <Page>
         <Header />
         <div className="p-2 w-full flex flex-col items-center justify-center">
+          {/* Progress */}
+          <p className="text-xs text-gray-300 mb-6">
+            {index + 1} / {quizData.length}
+          </p>
+
           <div className="flex flex-col justify-center items-center">
             {/* Word */}
             <div className="mb-1">
-              <h4 className="font-bold text-6xl">{data.word}</h4>
+              <h4 className="font-bold text-6xl">{current.word}</h4>
             </div>
 
             {/* Word translation */}
             <div
               className={`text-sm text-blue-400 mb-5 transition-all duration-300 ${revealed ? "opacity-100" : "opacity-0 select-none"}`}
             >
-              {data.wordTranslation}
+              {current.wordTranslation}
             </div>
 
             {/* Sentence */}
-            <p>{data.sentence}</p>
+            <p>{current.sentence}</p>
 
             {/* Sentence translation */}
             <div
               className={`text-sm text-gray-400 mt-1 transition-all duration-300 ${revealed ? "opacity-100" : "opacity-0 select-none"}`}
             >
-              {data.sentenceTranslation}
+              {current.sentenceTranslation}
             </div>
           </div>
 
           {/* Button */}
           <div className="mt-6">
-            <button
-              onClick={() => setRevealed((prev) => !prev)}
-              className="cursor-pointer bg-blue-500/60 hover:bg-blue-500/90 text-xs px-4 py-2 text-white"
-            >
-              {revealed ? "hide" : "reveal"}
-            </button>
+            {!revealed ? (
+              <button
+                onClick={() => setRevealed(true)}
+                className="cursor-pointer bg-blue-500/60 hover:bg-blue-500/90 text-xs px-4 py-2 text-white"
+              >
+                reveal
+              </button>
+            ) : (
+              <button
+                onClick={handleNext}
+                className="cursor-pointer bg-green-500/60 hover:bg-green-500/90 text-xs px-4 py-2 text-white"
+              >
+                next →
+              </button>
+            )}
           </div>
         </div>
       </Page>
