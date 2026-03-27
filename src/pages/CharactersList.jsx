@@ -36,7 +36,7 @@ export default function CharactersList() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, 150px)",
             gap: "0.85rem",
-            width: "860px",
+            width: "100%",
             margin: "0 auto",
             placeContent: "center",
           }}
