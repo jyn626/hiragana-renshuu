@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Page from "../components/common/Page";
 import Header from "../components/common/Header";
 
@@ -68,15 +68,42 @@ const quizData = [
 export default function Quiz() {
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
+  const [countdown, setCountdown] = useState(null);
+  const intervalRef = useRef(null);
 
   const current = quizData[index];
 
+  const handleReveal = () => {
+    setRevealed(true);
+    setCountdown(2);
+
+    intervalRef.current = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(intervalRef.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
   const handleNext = () => {
+    if (countdown !== 0) return;
+    clearInterval(intervalRef.current);
     setRevealed(false);
+    setCountdown(null);
     setTimeout(() => {
       setIndex((prev) => (prev + 1) % quizData.length);
     }, 150);
   };
+
+  // cleanup on unmount
+  useEffect(() => {
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const isDisabled = countdown !== 0 && countdown !== null;
 
   return (
     <>
@@ -116,7 +143,7 @@ export default function Quiz() {
           <div className="mt-6">
             {!revealed ? (
               <button
-                onClick={() => setRevealed(true)}
+                onClick={handleReveal}
                 className="cursor-pointer bg-blue-500/60 hover:bg-blue-500/90 text-xs px-4 py-2 text-white"
               >
                 reveal
@@ -124,9 +151,14 @@ export default function Quiz() {
             ) : (
               <button
                 onClick={handleNext}
-                className="cursor-pointer bg-green-500/60 hover:bg-green-500/90 text-xs px-4 py-2 text-white"
+                disabled={isDisabled}
+                className={`text-xs px-4 py-2 text-white transition-all duration-300 ${
+                  isDisabled
+                    ? "bg-green-500/30 cursor-not-allowed"
+                    : "bg-green-500/60 hover:bg-green-500/90 cursor-pointer"
+                }`}
               >
-                next →
+                {isDisabled ? `next (${countdown})` : "next →"}
               </button>
             )}
           </div>
