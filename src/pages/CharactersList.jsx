@@ -115,9 +115,6 @@ export default function CharactersList() {
             </div>
           </div>
         )}
-        <div className="p-4">
-          <small>Dakuten</small>
-        </div>
       </Page>
     </>
   );
