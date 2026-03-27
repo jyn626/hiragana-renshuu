@@ -10,8 +10,8 @@ function Header() {
 
   return (
     <>
-      <div className="mb-2 w-full px-4 py-2 border-b border-gray-200 flex flex-col  md:gap-2">
-        <div className="flex flex-col md:flex-row gap-2 items-center">
+      <div className="mb-2 w-full border-b border-gray-200 flex flex-col  md:gap-2">
+        <div className=" px-4 py-2 flex flex-col md:flex-row gap-2 items-center">
           <img width="90" src="/school_girl_lying.jpg" alt="" />
           <div className="text-center md:text-start">
             <h4 className="font-light">
@@ -25,22 +25,28 @@ function Header() {
             </p>
           </div>
         </div>
-        <div className="flex gap-2 flex-row">
+        <div className="flex gap-2 flex-row bg-blue-300/20 px-6 py-1.5 border-y border-gray-200">
           <small
-            className={`font-light ${path == "/" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
+            className={`font-bold ${path == "/" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
           >
             <Link to="/">flashcards</Link>
           </small>
           <small
-            className={`font-light ${path == "/reading" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
+            className={`font-bold ${path == "/reading" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
           >
             <Link to="/reading">hiragana: read & type</Link>
           </small>
 
           <small
-            className={`font-light ${path == "/characters" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
+            className={`font-bold ${path == "/characters" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
           >
             <Link to="/characters">characters</Link>
+          </small>
+
+          <small
+            className={`font-bold ${path == "/quiz" ? "text-blue-600 underline" : "text-blue-400"} cursor-pointer hover:underline `}
+          >
+            <Link to="/quiz">quiz</Link>
           </small>
         </div>
       </div>
