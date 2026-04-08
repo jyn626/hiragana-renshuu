@@ -76,7 +76,7 @@ export default function Reading() {
 
           {/* Word translation */}
           <div
-            className={`text-sm text-blue-400 mb-5 transition-all duration-300 ${
+            className={`text-md text-blue-400 mb-5 transition-all duration-300 ${
               revealed ? "opacity-100" : "opacity-0 select-none"
             }`}
           >
@@ -84,7 +84,7 @@ export default function Reading() {
           </div>
 
           {/* Sentence */}
-          <p>{current?.sentence}</p>
+          <p className="text-2xl">{current?.sentence}</p>
 
           {/* Sentence translation */}
           <div
